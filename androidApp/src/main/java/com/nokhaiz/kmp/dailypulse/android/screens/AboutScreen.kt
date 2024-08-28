@@ -1,13 +1,16 @@
-package com.nokhaiz.kmp.dailypulse.android
+package com.nokhaiz.kmp.dailypulse.android.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -18,27 +21,40 @@ import androidx.compose.ui.unit.dp
 import com.nokhaiz.kmp.dailypulse.Platform
 
 @Composable
-fun AboutScreen(modifier: Modifier = Modifier) {
+fun AboutScreen(
+    onUpButtonClick: () -> Unit
+) {
     Column {
-        Toolbar()
+        Toolbar(onUpButtonClick)
         ContentView()
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Toolbar(modifier: Modifier = Modifier) {
-    TopAppBar(title = {
-        Text(text = "About Device")
-    })
+private fun Toolbar(
+    onUpButtonClick: () -> Unit
+) {
+    TopAppBar(
+        title = { Text(text = "About Device") },
+        navigationIcon = {
+            IconButton(onClick = onUpButtonClick) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Up Button",
+                )
+            }
+        }
+    )
 }
 
 @Composable
-fun ContentView(modifier: Modifier = Modifier) {
+private fun ContentView() {
     val items = makeItems()
 
-    LazyColumn(modifier = modifier.fillMaxSize()) {
-
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+    ) {
         items(items) { row ->
             RowView(title = row.first, subtitle = row.second)
         }
@@ -52,24 +68,25 @@ private fun makeItems(): List<Pair<String, String>> {
     return listOf(
         Pair("Operating System", "${platform.osName} ${platform.osVersion}"),
         Pair("Device", platform.deviceModel),
-        Pair("Density", platform.density.toString()),
+        Pair("Density", platform.density.toString())
     )
 }
 
 @Composable
-fun RowView(title: String, subtitle: String, modifier: Modifier = Modifier) {
-    Column(modifier = modifier.fillMaxWidth()) {
-        Column(Modifier.padding(8.dp)) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.bodySmall,
-                color = Color.Gray
-            )
-            Text(
-                text = subtitle,
-                style = MaterialTheme.typography.bodyLarge
-            )
-        }
-        Divider()
+private fun RowView(
+    title: String,
+    subtitle: String,
+) {
+    Column(Modifier.padding(8.dp)) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.bodySmall,
+            color = Color.Gray,
+        )
+        Text(
+            text = subtitle,
+            style = MaterialTheme.typography.bodyLarge,
+        )
     }
+    Divider()
 }

@@ -43,4 +43,9 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
+
+    // image loading library
+    implementation(libs.coil.compose)
+    // for navigation
+    implementation(libs.androidx.navigation.compose)
 }
