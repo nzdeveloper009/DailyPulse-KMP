@@ -1,7 +1,7 @@
 import SwiftUI
 import shared
 
-struct AboutListView: View {
+struct AboutDeviceListView: View {
     private struct RowItem:Hashable {
         let title:String
         let subtitle:String
@@ -46,5 +46,5 @@ struct AboutListView: View {
 }
 
 #Preview {
-    AboutListView()
+    AboutDeviceListView()
 }

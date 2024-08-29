@@ -63,7 +63,7 @@ private fun AppBar(
             IconButton(onClick = onAboutButtonClick) {
                 Icon(
                     imageVector = Icons.Outlined.Info,
-                    contentDescription = "About Device Button",
+                    contentDescription = "About Device Button"
                 )
             }
         }

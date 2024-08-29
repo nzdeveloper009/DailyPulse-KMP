@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.nokhaiz.kmp.dailypulse.Platform
 
 @Composable
-fun AboutScreen(modifier: Modifier = Modifier) {
+fun AboutDeviceScreen(modifier: Modifier = Modifier) {
     Column {
         Toolbar()
         ContentView()

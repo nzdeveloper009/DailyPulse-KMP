@@ -1,15 +1,15 @@
 
 import SwiftUI
 
-struct AboutScreen: View {
+struct AboutDeviceScreen: View {
     var body: some View {
         NavigationStack {
-            AboutListView()
+            AboutDeviceListView()
                 .navigationTitle("About Device")
         }
     }
 }
 
 #Preview {
-    AboutScreen()
+    AboutDeviceScreen()
 }
