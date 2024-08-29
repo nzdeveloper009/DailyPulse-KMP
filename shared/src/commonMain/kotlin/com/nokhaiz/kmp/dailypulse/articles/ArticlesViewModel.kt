@@ -12,7 +12,9 @@ import kotlinx.serialization.json.Json
 
 // https://github.com/petros-efthymiou/DailyPulse
 
-class ArticlesViewModel : BaseViewModel() {
+class ArticlesViewModel(
+    private val useCase: ArticlesUseCase
+)  : BaseViewModel() {
 
     private val _articlesState: MutableStateFlow<ArticlesState> =
         MutableStateFlow(ArticlesState(loading = true))
@@ -20,23 +22,7 @@ class ArticlesViewModel : BaseViewModel() {
     val articlesState: StateFlow<ArticlesState>
         get() = _articlesState
 
-    private val useCase: ArticlesUseCase
-
     init {
-        val httpClient = HttpClient {
-            install(ContentNegotiation) {
-                json(Json {
-                    prettyPrint = true
-                    isLenient = true
-                    ignoreUnknownKeys = true
-                })
-            }
-        }
-
-        val service = ArticlesService(httpClient)
-
-        useCase = ArticlesUseCase(service)
-
         getArticles()
     }
 

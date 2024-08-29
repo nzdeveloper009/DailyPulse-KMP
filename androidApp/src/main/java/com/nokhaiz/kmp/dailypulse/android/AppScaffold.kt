@@ -12,10 +12,9 @@ import androidx.navigation.compose.rememberNavController
 import com.nokhaiz.kmp.dailypulse.android.screens.AboutScreen
 import com.nokhaiz.kmp.dailypulse.android.screens.ArticlesScreen
 import com.nokhaiz.kmp.dailypulse.android.screens.Screens
-import com.nokhaiz.kmp.dailypulse.articles.ArticlesViewModel
 
 @Composable
-fun AppScaffold(articlesViewModel: ArticlesViewModel) {
+fun AppScaffold() {
     val navController = rememberNavController()
     Scaffold {
         AppNavHost(
@@ -23,7 +22,6 @@ fun AppScaffold(articlesViewModel: ArticlesViewModel) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it),
-            articlesViewModel
         )
     }
 }
@@ -31,8 +29,7 @@ fun AppScaffold(articlesViewModel: ArticlesViewModel) {
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
-    articlesViewModel: ArticlesViewModel
+    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
@@ -40,10 +37,7 @@ fun AppNavHost(
         modifier = modifier,
     ) {
         composable(Screens.ARTICLES.route) {
-            ArticlesScreen(
-                onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route) },
-                articlesViewModel,
-            )
+            ArticlesScreen(onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route) })
         }
 
         composable(Screens.ABOUT_DEVICE.route) {
